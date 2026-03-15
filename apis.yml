@@ -1,13 +1,131 @@
+aid: helm
 name: Helm
-description: Package manager for Kubernetes that helps you define, install, and upgrade
-  complex Kubernetes applications using charts
+description: >-
+  Package manager for Kubernetes that helps you define, install, and upgrade
+  complex Kubernetes applications using charts. Helm uses a packaging format
+  called charts, which are collections of files that describe a related set
+  of Kubernetes resources. A chart repository is an HTTP server that houses
+  an index.yaml file and packaged chart archives.
 url: https://helm.sh
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
 - Kubernetes
 - Package Manager
 - DevOps
 - Container Orchestration
+- Charts
+- Cloud Native
 created: '2025'
 modified: '2025'
-apis: []
-common: []
+specificationVersion: '0.19'
+type: Index
+apis:
+- aid: helm:chart-repository-api
+  name: Helm Chart Repository API
+  description: >-
+    The Helm Chart Repository API defines the HTTP endpoints used by Helm
+    clients to discover and download charts from a repository server. This
+    includes the index.yaml endpoint for chart discovery and chart package
+    download endpoints. ChartMuseum extends this with a JSON-based management
+    API for listing, uploading, and deleting charts.
+  humanURL: https://helm.sh/docs/topics/chart_repository/
+  properties:
+  - type: OpenAPI
+    url: openapi.yml
+  - type: Documentation
+    url: https://helm.sh/docs/topics/chart_repository/
+  tags:
+  - Charts
+  - Repository
+  - Package Registry
+- aid: helm:chart-yaml-schema
+  name: Helm Chart.yaml Schema
+  description: >-
+    JSON Schema defining the structure and validation rules for Chart.yaml,
+    the metadata file required in every Helm chart. Describes chart name,
+    version, dependencies, maintainers, and other metadata fields.
+  humanURL: https://helm.sh/docs/topics/charts/#the-chartyaml-file
+  properties:
+  - type: JSONSchema
+    url: chart-yaml-schema.json
+  - type: Documentation
+    url: https://helm.sh/docs/topics/charts/#the-chartyaml-file
+  tags:
+  - Schema
+  - Chart Metadata
+  - Validation
+- aid: helm:values-yaml-schema
+  name: Helm Values YAML Schema
+  description: >-
+    JSON Schema describing common conventional patterns for values.yaml
+    files in Helm charts. Values.yaml provides default configuration values
+    including container image settings, service configuration, ingress rules,
+    resource limits, and scheduling constraints.
+  humanURL: https://helm.sh/docs/chart_template_guide/values_files/
+  properties:
+  - type: JSONSchema
+    url: values-yaml-schema.json
+  - type: Documentation
+    url: https://helm.sh/docs/chart_template_guide/values_files/
+  tags:
+  - Schema
+  - Configuration
+  - Values
+- aid: helm:repository-index-schema
+  name: Helm Repository Index Schema
+  description: >-
+    JSON Schema for the index.yaml file served by Helm chart repositories.
+    The index is the primary discovery mechanism listing all available charts
+    and versions with download URLs and integrity digests.
+  humanURL: https://helm.sh/docs/topics/chart_repository/#the-index-file
+  properties:
+  - type: JSONSchema
+    url: repository-index-schema.json
+  - type: Documentation
+    url: https://helm.sh/docs/topics/chart_repository/#the-index-file
+  tags:
+  - Schema
+  - Repository Index
+  - Discovery
+- aid: helm:json-ld-context
+  name: Helm JSON-LD Context
+  description: >-
+    JSON-LD context document mapping Helm concepts to linked data
+    vocabularies including Schema.org, Dublin Core, SPDX, FOAF, and
+    W3C PROV. Enables semantic interoperability of Helm chart metadata.
+  humanURL: https://helm.sh/docs/
+  properties:
+  - type: JSON-LD
+    url: context.jsonld
+  tags:
+  - Linked Data
+  - Semantics
+  - JSON-LD
+common:
+- type: Documentation
+  name: Helm Documentation
+  description: Official Helm documentation covering installation, chart development, and best practices.
+  url: https://helm.sh/docs/
+- type: GettingStarted
+  name: Helm Quickstart Guide
+  description: Step-by-step guide to installing Helm and deploying your first chart.
+  url: https://helm.sh/docs/intro/quickstart/
+- type: GitHubOrg
+  name: Helm GitHub Organization
+  description: Source code repositories for Helm and related projects.
+  url: https://github.com/helm
+- type: Blog
+  name: Helm Blog
+  description: Official blog with announcements, releases, and community updates.
+  url: https://helm.sh/blog/
+- type: Slack
+  name: Helm Slack
+  description: Kubernetes Slack workspace with Helm channels for community support.
+  url: https://kubernetes.slack.com/messages/helm-users
+- type: ArtifactHub
+  name: Artifact Hub
+  description: Public chart repository search engine for discovering Helm charts.
+  url: https://artifacthub.io/
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com

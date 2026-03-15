@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helm.sh/schemas/chart-yaml.json",
+  "title": "Helm Chart.yaml",
+  "description": "Schema for the Chart.yaml file that describes a Helm chart. Chart.yaml contains metadata about the chart including its name, version, dependencies, and maintainers. This file is required in every Helm chart.",
+  "type": "object",
+  "required": [
+    "apiVersion",
+    "name",
+    "version"
+  ],
+  "properties": {
+    "apiVersion": {
+      "type": "string",
+      "description": "The chart API version. v2 is for Helm 3 charts, v1 is for Helm 2 charts.",
+      "enum": [
+        "v1",
+        "v2"
+      ],
+      "default": "v2"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the chart. Must match the directory name.",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]*$",
+      "examples": [
+        "nginx",
+        "my-application"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "The SemVer 2 version of the chart. This is used as a release marker and must be incremented for each new release.",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*)?(\\+[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*)?$",
+      "examples": [
+        "1.0.0",
+        "2.1.3-beta.1"
+      ]
+    },
+    "kubeVersion": {
+      "type": "string",
+      "description": "A SemVer range of compatible Kubernetes versions. Helm validates this constraint during installation.",
+      "examples": [
+        ">= 1.19.0",
+        ">= 1.20.0-0 < 1.28.0-0"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "A single-sentence description of the chart."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the chart. Application charts are installable, library charts provide utilities for other charts.",
+      "enum": [
+        "application",
+        "library"
+      ],
+      "default": "application"
+    },
+    "keywords": {
+      "type": "array",
+      "description": "A list of keywords associated with the chart for search and categorization.",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["nginx", "web server", "proxy"]
+      ]
+    },
+    "home": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the project home page."
+    },
+    "sources": {
+      "type": "array",
+      "description": "A list of URLs to source code for this chart.",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "A list of chart dependencies. Helm downloads these charts into the charts/ directory during dependency resolution.",
+      "items": {
+        "$ref": "#/$defs/Dependency"
+      }
+    },
+    "maintainers": {
+      "type": "array",
+      "description": "A list of chart maintainers with contact information.",
+      "items": {
+        "$ref": "#/$defs/Maintainer"
+      }
+    },
+    "icon": {
+      "type": "string",
+      "format": "uri",
+      "description": "A URL to an SVG or PNG icon to display in the Helm UI and artifact hub."
+    },
+    "appVersion": {
+      "type": "string",
+      "description": "The version of the application that the chart deploys. This is informational and does not affect chart version calculations.",
+      "examples": [
+        "1.21.0",
+        "8.0.28"
+      ]
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "Whether this chart is deprecated. When set to true, Helm shows a warning during installation.",
+      "default": false
+    },
+    "annotations": {
+      "type": "object",
+      "description": "Annotations are key-value pairs used by Artifact Hub and other tools to store additional metadata.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "examples": [
+        {
+          "artifacthub.io/category": "networking",
+          "artifacthub.io/license": "Apache-2.0"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "Dependency": {
+      "type": "object",
+      "description": "A chart dependency specifying another chart that must be present in the charts/ directory.",
+      "required": [
+        "name",
+        "version"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the dependency chart."
+        },
+        "version": {
+          "type": "string",
+          "description": "The SemVer range for the dependency version."
+        },
+        "repository": {
+          "type": "string",
+          "description": "The URL of the chart repository where the dependency is hosted. Can also use the alias:// prefix for named repositories.",
+          "examples": [
+            "https://charts.bitnami.com/bitnami",
+            "alias://my-repo"
+          ]
+        },
+        "condition": {
+          "type": "string",
+          "description": "A YAML path in the parent chart's values that resolves to a boolean, controlling whether this dependency is enabled.",
+          "examples": [
+            "redis.enabled",
+            "global.redis.enabled"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags used to group chart dependencies together for bulk enable/disable.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "import-values": {
+          "description": "Mapping of values to import from the child chart into the parent chart's values.",
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "child": {
+                    "type": "string"
+                  },
+                  "parent": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "alias": {
+          "type": "string",
+          "description": "An alias name for the dependency, allowing the same chart to be used multiple times with different configurations."
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether the dependency is enabled by default.",
+          "default": true
+        }
+      }
+    },
+    "Maintainer": {
+      "type": "object",
+      "description": "Contact information for a chart maintainer.",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The maintainer's name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The maintainer's email address."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The maintainer's personal or organizational URL."
+        }
+      }
+    }
+  }
+}

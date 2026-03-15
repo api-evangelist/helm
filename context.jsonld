@@ -1,0 +1,207 @@
+{
+  "@context": {
+    "@vocab": "https://helm.sh/schemas/",
+    "helm": "https://helm.sh/schemas/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "doap": "http://usefulinc.com/ns/doap#",
+    "spdx": "http://spdx.org/rdf/terms#",
+    "cnt": "http://www.w3.org/2011/content#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+
+    "Chart": {
+      "@id": "helm:Chart",
+      "@type": "@id",
+      "schema:additionalType": "schema:SoftwareSourceCode"
+    },
+    "ChartRepository": {
+      "@id": "helm:ChartRepository",
+      "@type": "@id",
+      "schema:additionalType": "schema:DataCatalog"
+    },
+    "ChartVersion": {
+      "@id": "helm:ChartVersion",
+      "@type": "@id",
+      "schema:additionalType": "schema:SoftwareApplication"
+    },
+    "Release": {
+      "@id": "helm:Release",
+      "@type": "@id",
+      "schema:additionalType": "schema:CreativeWork"
+    },
+    "Values": {
+      "@id": "helm:Values",
+      "@type": "@id",
+      "schema:additionalType": "schema:PropertyValueSpecification"
+    },
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "appVersion": {
+      "@id": "helm:appVersion",
+      "schema:sameAs": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "apiVersion": {
+      "@id": "helm:apiVersion",
+      "@type": "xsd:string"
+    },
+    "kubeVersion": {
+      "@id": "helm:kubeVersion",
+      "schema:sameAs": "schema:softwareRequirements",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "helm:chartType",
+      "schema:sameAs": "schema:applicationCategory",
+      "@type": "xsd:string"
+    },
+    "keywords": {
+      "@id": "schema:keywords",
+      "@container": "@list"
+    },
+    "home": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "sources": {
+      "@id": "schema:codeRepository",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "icon": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "deprecated": {
+      "@id": "helm:deprecated",
+      "schema:sameAs": "schema:expires",
+      "@type": "xsd:boolean"
+    },
+
+    "maintainers": {
+      "@id": "schema:maintainer",
+      "@container": "@set"
+    },
+    "Maintainer": {
+      "@id": "foaf:Person"
+    },
+    "email": {
+      "@id": "foaf:mbox",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "foaf:homepage",
+      "@type": "@id"
+    },
+
+    "dependencies": {
+      "@id": "helm:dependencies",
+      "schema:sameAs": "schema:softwareRequirements",
+      "@container": "@set"
+    },
+    "Dependency": {
+      "@id": "helm:Dependency",
+      "schema:sameAs": "schema:SoftwareApplication"
+    },
+    "repository": {
+      "@id": "helm:repository",
+      "schema:sameAs": "schema:installUrl",
+      "@type": "@id"
+    },
+    "condition": {
+      "@id": "helm:condition",
+      "@type": "xsd:string"
+    },
+    "alias": {
+      "@id": "helm:alias",
+      "schema:sameAs": "schema:alternateName",
+      "@type": "xsd:string"
+    },
+
+    "entries": {
+      "@id": "helm:entries",
+      "schema:sameAs": "schema:dataset",
+      "@container": "@index"
+    },
+    "urls": {
+      "@id": "schema:downloadUrl",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "digest": {
+      "@id": "spdx:checksum",
+      "@type": "xsd:string"
+    },
+    "created": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "generated": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+
+    "annotations": {
+      "@id": "helm:annotations",
+      "@container": "@index"
+    },
+
+    "image": {
+      "@id": "helm:containerImage"
+    },
+    "pullPolicy": {
+      "@id": "helm:pullPolicy",
+      "@type": "xsd:string"
+    },
+    "replicaCount": {
+      "@id": "helm:replicaCount",
+      "@type": "xsd:integer"
+    },
+    "service": {
+      "@id": "helm:service",
+      "schema:sameAs": "schema:WebAPI"
+    },
+    "ingress": {
+      "@id": "helm:ingress"
+    },
+    "resources": {
+      "@id": "helm:resources",
+      "schema:sameAs": "schema:softwareRequirements"
+    },
+    "autoscaling": {
+      "@id": "helm:autoscaling"
+    },
+    "nodeSelector": {
+      "@id": "helm:nodeSelector",
+      "@container": "@index"
+    },
+    "tolerations": {
+      "@id": "helm:tolerations",
+      "@container": "@set"
+    },
+    "affinity": {
+      "@id": "helm:affinity"
+    },
+    "global": {
+      "@id": "helm:globalValues"
+    },
+
+    "license": {
+      "@id": "spdx:licenseDeclared",
+      "@type": "xsd:string"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}
