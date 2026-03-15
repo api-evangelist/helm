@@ -1,0 +1,13 @@
+name: Helm
+description: Package manager for Kubernetes that helps you define, install, and upgrade
+  complex Kubernetes applications using charts
+url: https://helm.sh
+tags:
+- Kubernetes
+- Package Manager
+- DevOps
+- Container Orchestration
+created: '2025'
+modified: '2025'
+apis: []
+common: []
