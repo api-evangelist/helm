@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: Helm Chart Repository API
+  description: >-
+    The Helm Chart Repository API defines the HTTP endpoints used by Helm
+    clients to discover and download charts from a repository server. A chart
+    repository is an HTTP server that houses an index.yaml file listing all
+    available charts and optionally packaged chart archives (.tgz files).
+    ChartMuseum and compatible implementations extend this with a JSON-based
+    management API for listing, uploading, and deleting charts programmatically.
+  version: v3.17.0
+  contact:
+    name: Helm Project
+    url: https://helm.sh
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+externalDocs:
+  description: Helm Chart Repository Guide
+  url: https://helm.sh/docs/topics/chart_repository/
+servers:
+  - url: 'https://{repository-host}'
+    description: Helm Chart Repository Server
+    variables:
+      repository-host:
+        default: charts.example.com
+        description: The hostname of the chart repository
+tags:
+  - name: Repository
+    description: >-
+      Standard Helm chart repository endpoints for index and chart download.
+      These endpoints are required for any Helm-compatible chart repository.
+  - name: Charts
+    description: >-
+      Chart package download endpoints for retrieving packaged chart archives
+      and provenance files for signature verification.
+  - name: ChartMuseum
+    description: >-
+      Extended API endpoints provided by ChartMuseum and compatible chart
+      repository servers for JSON-based chart management.
+paths:
+  /index.yaml:
+    get:
+      operationId: getRepositoryIndex
+      summary: Get repository index
+      description: >-
+        Retrieves the repository index file which contains metadata about all
+        charts available in the repository. The index.yaml file lists every
+        chart version along with its description, maintainers, download URLs,
+        and content digests. Helm clients use this endpoint to search and
+        resolve chart dependencies.
+      tags:
+        - Repository
+      responses:
+        '200':
+          description: Repository index returned successfully
+          content:
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/RepositoryIndex'
+            text/yaml:
+              schema:
+                $ref: '#/components/schemas/RepositoryIndex'
+        '404':
+          description: Repository index not found
+  /charts/{chartName}-{version}.tgz:
+    get:
+      operationId: downloadChartPackage
+      summary: Download chart package
+      description: >-
+        Downloads a packaged Helm chart archive (.tgz file) for a specific chart
+        name and version. The archive contains the Chart.yaml, values.yaml,
+        templates, and other chart files. Helm clients use this endpoint after
+        resolving chart references from the index.
+      tags:
+        - Charts
+      parameters:
+        - $ref: '#/components/parameters/ChartName'
+        - $ref: '#/components/parameters/Version'
+      responses:
+        '200':
+          description: Chart package returned successfully
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+            application/x-tar:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Chart package not found
+  /charts/{chartName}-{version}.tgz.prov:
+    get:
+      operationId: downloadChartProvenance
+      summary: Download chart provenance file
+      description: >-
+        Downloads the provenance file for a specific chart version. The
+        provenance file contains a PGP signature used to verify the integrity
+        and origin of the chart package. This endpoint is optional and only
+        available for cryptographically signed charts.
+      tags:
+        - Charts
+      parameters:
+        - $ref: '#/components/parameters/ChartName'
+        - $ref: '#/components/parameters/Version'
+      responses:
+        '200':
+          description: Provenance file returned successfully
+          content:
+            application/pgp-signature:
+              schema:
+                type: string
+        '404':
+          description: Provenance file not found
+  /api/charts:
+    get:
+      operationId: listAllCharts
+      summary: List all charts
+      description: >-
+        Returns a list of all charts available in the repository grouped by
+        chart name. This endpoint is provided by ChartMuseum and other enhanced
+        chart repository implementations supporting JSON-based management.
+      tags:
+        - ChartMuseum
+      responses:
+        '200':
+          description: Chart list returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Map of chart names to their available versions.
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ChartVersion'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: uploadChart
+      summary: Upload chart package
+      description: >-
+        Uploads a new chart package to the repository. This endpoint is provided
+        by ChartMuseum and other writable chart repository implementations. The
+        chart archive is sent as multipart form data or as a raw binary body.
+      tags:
+        - ChartMuseum
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                chart:
+                  type: string
+                  format: binary
+                  description: The chart package archive (.tgz file)
+                prov:
+                  type: string
+                  format: binary
+                  description: Optional PGP provenance file (.tgz.prov)
+      responses:
+        '201':
+          description: Chart uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  saved:
+                    type: boolean
+                    description: Whether the chart was saved successfully
+                    example: true
+        '401':
+          description: Unauthorized
+        '409':
+          description: Chart version already exists
+  /api/charts/{chartName}:
+    get:
+      operationId: getChartVersions
+      summary: Get chart versions
+      description: >-
+        Returns all available versions for a specific chart. This endpoint is
+        provided by ChartMuseum and other enhanced chart repository
+        implementations.
+      tags:
+        - ChartMuseum
+      parameters:
+        - $ref: '#/components/parameters/ChartName'
+      responses:
+        '200':
+          description: Chart versions returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChartVersion'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Chart not found
+  /api/charts/{chartName}/{version}:
+    get:
+      operationId: getChartVersion
+      summary: Get specific chart version
+      description: >-
+        Returns metadata for a specific version of a named chart. This endpoint
+        is provided by ChartMuseum and other enhanced chart repository
+        implementations.
+      tags:
+        - ChartMuseum
+      parameters:
+        - $ref: '#/components/parameters/ChartName'
+        - $ref: '#/components/parameters/Version'
+      responses:
+        '200':
+          description: Chart version metadata returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChartVersion'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Chart version not found
+    delete:
+      operationId: deleteChartVersion
+      summary: Delete chart version
+      description: >-
+        Deletes a specific version of a chart from the repository. This endpoint
+        is provided by ChartMuseum and other writable chart repository
+        implementations.
+      tags:
+        - ChartMuseum
+      parameters:
+        - $ref: '#/components/parameters/ChartName'
+        - $ref: '#/components/parameters/Version'
+      responses:
+        '200':
+          description: Chart version deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deleted:
+                    type: boolean
+                    description: Whether the chart version was deleted
+                    example: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Chart version not found
+  /api/prov:
+    post:
+      operationId: uploadProvenance
+      summary: Upload provenance file
+      description: >-
+        Uploads a PGP provenance file to the repository independently of a
+        chart package. This endpoint is provided by ChartMuseum for cases where
+        chart and provenance files are uploaded separately.
+      tags:
+        - ChartMuseum
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                prov:
+                  type: string
+                  format: binary
+                  description: The PGP provenance file (.tgz.prov)
+      responses:
+        '201':
+          description: Provenance file uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  saved:
+                    type: boolean
+                    description: Whether the provenance file was saved
+                    example: true
+        '401':
+          description: Unauthorized
+        '409':
+          description: Provenance file already exists
+  /health:
+    get:
+      operationId: getHealth
+      summary: Get repository health
+      description: >-
+        Returns the health status of the chart repository server. Useful for
+        liveness and readiness probes in Kubernetes deployments.
+      tags:
+        - Repository
+      responses:
+        '200':
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  healthy:
+                    type: boolean
+                    description: Whether the server is healthy
+                    example: true
+components:
+  parameters:
+    ChartName:
+      name: chartName
+      in: path
+      required: true
+      description: The name of the chart
+      schema:
+        type: string
+        example: nginx
+    Version:
+      name: version
+      in: path
+      required: true
+      description: The SemVer 2 version of the chart
+      schema:
+        type: string
+        example: 1.2.3
+  schemas:
+    RepositoryIndex:
+      type: object
+      description: >-
+        The repository index file listing all available charts and their
+        versions. This is the primary discovery mechanism for Helm clients.
+      required:
+        - apiVersion
+        - entries
+      properties:
+        apiVersion:
+          type: string
+          description: The API version of the index file format.
+          example: v1
+        generated:
+          type: string
+          format: date-time
+          description: Timestamp when the index was last generated.
+        entries:
+          type: object
+          description: >-
+            Map of chart names to their available versions. Each key is a chart
+            name and the value is an array of chart version metadata objects.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ChartVersion'
+        serverInfo:
+          type: object
+          description: Optional server information included by some repository implementations.
+          properties:
+            contextPath:
+              type: string
+              description: Context path for the server.
+    ChartVersion:
+      type: object
+      description: >-
+        Metadata describing a specific version of a Helm chart as it appears
+        in the repository index.
+      required:
+        - apiVersion
+        - name
+        - version
+      properties:
+        apiVersion:
+          type: string
+          description: The chart API version (v1 for Helm 2, v2 for Helm 3).
+          enum:
+            - v1
+            - v2
+          example: v2
+        name:
+          type: string
+          description: The name of the chart.
+          example: nginx
+        version:
+          type: string
+          description: The SemVer 2 version of the chart.
+          example: 1.2.3
+        kubeVersion:
+          type: string
+          description: A SemVer range of compatible Kubernetes versions.
+          example: '>= 1.19.0'
+        description:
+          type: string
+          description: A single-sentence description of the chart.
+        type:
+          type: string
+          description: The type of chart — application for installable charts, library for utility charts.
+          enum:
+            - application
+            - library
+          default: application
+        keywords:
+          type: array
+          items:
+            type: string
+          description: Keywords associated with the chart for search and categorization.
+        home:
+          type: string
+          format: uri
+          description: The URL of the project home page.
+        sources:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: URLs to source code for the chart.
+        maintainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Maintainer'
+          description: List of chart maintainers.
+        icon:
+          type: string
+          format: uri
+          description: URL to an SVG or PNG icon for the chart.
+        appVersion:
+          type: string
+          description: The version of the application contained in the chart.
+          example: 1.21.0
+        deprecated:
+          type: boolean
+          description: Whether this chart version is deprecated.
+          default: false
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+          description: >-
+            Annotations are key-value pairs used by Artifact Hub and other tools
+            for additional metadata.
+        urls:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: Download URLs for the chart package.
+        created:
+          type: string
+          format: date-time
+          description: Timestamp when this version was added to the index.
+        digest:
+          type: string
+          description: SHA-256 digest of the chart package for integrity verification.
+          example: sha256:abc123def456
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'
+          description: List of chart dependencies declared in Chart.yaml.
+    Maintainer:
+      type: object
+      description: Contact information for a chart maintainer.
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The maintainer name.
+        email:
+          type: string
+          format: email
+          description: The maintainer email address.
+        url:
+          type: string
+          format: uri
+          description: The maintainer URL.
+    Dependency:
+      type: object
+      description: A chart dependency specifying another chart required by this chart.
+      required:
+        - name
+        - version
+      properties:
+        name:
+          type: string
+          description: The name of the dependency chart.
+        version:
+          type: string
+          description: The SemVer range for the dependency version.
+        repository:
+          type: string
+          format: uri
+          description: The URL of the chart repository where the dependency is hosted.
+        condition:
+          type: string
+          description: >-
+            A YAML path that resolves to a boolean to enable or disable the
+            dependency.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags used to group dependencies for enable/disable.
+        alias:
+          type: string
+          description: Alias name for the dependency chart.

@@ -1,0 +1,247 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://helm.sh/schemas/",
+    "helm": "https://helm.sh/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "doap": "http://usefulinc.com/ns/doap#",
+    "spdx": "http://spdx.org/rdf/terms#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+
+    "Chart": {
+      "@id": "helm:Chart",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "version": {
+          "@id": "schema:softwareVersion",
+          "@type": "xsd:string"
+        },
+        "appVersion": {
+          "@id": "helm:appVersion",
+          "@type": "xsd:string"
+        },
+        "apiVersion": {
+          "@id": "helm:apiVersion",
+          "@type": "xsd:string"
+        },
+        "kubeVersion": {
+          "@id": "helm:kubeVersion",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "helm:chartType",
+          "@type": "xsd:string"
+        },
+        "keywords": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "home": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "sources": {
+          "@id": "schema:codeRepository",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "icon": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "deprecated": {
+          "@id": "helm:deprecated",
+          "@type": "xsd:boolean"
+        },
+        "maintainers": {
+          "@id": "schema:maintainer",
+          "@container": "@set"
+        },
+        "dependencies": {
+          "@id": "helm:dependencies",
+          "@container": "@set"
+        },
+        "annotations": {
+          "@id": "helm:annotations",
+          "@container": "@index"
+        }
+      }
+    },
+
+    "ChartRepository": {
+      "@id": "helm:ChartRepository",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "generated": {
+          "@id": "prov:generatedAtTime",
+          "@type": "xsd:dateTime"
+        },
+        "entries": {
+          "@id": "helm:entries",
+          "@container": "@index"
+        }
+      }
+    },
+
+    "ChartVersion": {
+      "@id": "helm:ChartVersion",
+      "@context": {
+        "urls": {
+          "@id": "schema:downloadUrl",
+          "@type": "@id",
+          "@container": "@set"
+        },
+        "digest": {
+          "@id": "spdx:checksum",
+          "@type": "xsd:string"
+        },
+        "created": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Release": {
+      "@id": "helm:Release",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "namespace": {
+          "@id": "helm:namespace",
+          "@type": "xsd:string"
+        },
+        "revision": {
+          "@id": "helm:revision",
+          "@type": "xsd:integer"
+        },
+        "status": {
+          "@id": "helm:releaseStatus",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "firstDeployed": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "lastDeployed": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "notes": {
+          "@id": "helm:releaseNotes",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Plugin": {
+      "@id": "helm:Plugin",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "version": {
+          "@id": "schema:softwareVersion",
+          "@type": "xsd:string"
+        },
+        "usage": {
+          "@id": "helm:pluginUsage",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "command": {
+          "@id": "helm:pluginCommand",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Maintainer": {
+      "@id": "foaf:Person",
+      "@context": {
+        "name": {
+          "@id": "foaf:name",
+          "@type": "xsd:string"
+        },
+        "email": {
+          "@id": "foaf:mbox",
+          "@type": "xsd:string"
+        },
+        "url": {
+          "@id": "foaf:homepage",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Dependency": {
+      "@id": "helm:Dependency",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "version": {
+          "@id": "schema:softwareVersion",
+          "@type": "xsd:string"
+        },
+        "repository": {
+          "@id": "helm:repository",
+          "@type": "@id"
+        },
+        "condition": {
+          "@id": "helm:condition",
+          "@type": "xsd:string"
+        },
+        "alias": {
+          "@id": "schema:alternateName",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "schema:softwareVersion",
+      "@type": "xsd:string"
+    },
+    "license": {
+      "@id": "spdx:licenseDeclared",
+      "@type": "xsd:string"
+    }
+  }
+}

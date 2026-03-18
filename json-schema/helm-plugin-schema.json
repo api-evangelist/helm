@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://helm.sh/schemas/plugin.json",
+  "title": "Helm Plugin Descriptor",
+  "description": "Schema for the plugin.yaml file that describes a Helm CLI plugin. The plugin.yaml file defines the plugin's name, version, command to execute, hooks, and platform-specific binaries. Helm plugins are installed into a single directory and extend the Helm CLI with additional subcommands.",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "usage",
+    "description",
+    "command"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the plugin. This becomes the subcommand name (e.g., 'helm name'). Must be lowercase letters, numbers, and hyphens.",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "examples": [
+        "diff",
+        "secrets",
+        "push"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "The SemVer 2 version of the plugin.",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*)?(\\+[\\da-zA-Z-]+(\\.[\\da-zA-Z-]+)*)?$",
+      "examples": [
+        "3.9.0",
+        "1.0.0-beta.1"
+      ]
+    },
+    "usage": {
+      "type": "string",
+      "description": "A short usage description shown in the 'helm help' output and 'helm plugin list' command."
+    },
+    "description": {
+      "type": "string",
+      "description": "A longer description of the plugin's functionality shown in 'helm <plugin> --help'."
+    },
+    "command": {
+      "type": "string",
+      "description": "The command to run when the plugin is invoked. Can reference the plugin directory with $HELM_PLUGIN_DIR. On Windows, use a batch file path.",
+      "examples": [
+        "$HELM_PLUGIN_DIR/bin/helm-diff",
+        "sh $HELM_PLUGIN_DIR/plugin.sh"
+      ]
+    },
+    "ignoreFlags": {
+      "type": "boolean",
+      "description": "When true, Helm will not pass global flags to the plugin command. Useful for plugins that handle their own flag parsing.",
+      "default": false
+    },
+    "useTunnel": {
+      "type": "boolean",
+      "description": "Deprecated in Helm 3. Previously used to create a tunnel to Tiller. Has no effect in Helm 3.",
+      "default": false
+    },
+    "hooks": {
+      "$ref": "#/$defs/Hooks"
+    },
+    "downloaders": {
+      "type": "array",
+      "description": "Custom protocol downloaders provided by this plugin. Allows the plugin to handle custom repository URL schemes.",
+      "items": {
+        "$ref": "#/$defs/Downloader"
+      }
+    },
+    "platformCommand": {
+      "type": "array",
+      "description": "Platform-specific command overrides. Helm selects the matching entry based on the current OS and architecture.",
+      "items": {
+        "$ref": "#/$defs/PlatformCommand"
+      }
+    }
+  },
+  "$defs": {
+    "Hooks": {
+      "type": "object",
+      "description": "Lifecycle hooks for the plugin. Hooks run shell commands at defined points in the plugin lifecycle.",
+      "properties": {
+        "install": {
+          "type": "string",
+          "description": "Shell command to run when the plugin is installed with 'helm plugin install'.",
+          "examples": [
+            "bash install.sh"
+          ]
+        },
+        "update": {
+          "type": "string",
+          "description": "Shell command to run when the plugin is updated with 'helm plugin update'.",
+          "examples": [
+            "bash install.sh"
+          ]
+        },
+        "delete": {
+          "type": "string",
+          "description": "Shell command to run when the plugin is removed with 'helm plugin uninstall'."
+        }
+      }
+    },
+    "Downloader": {
+      "type": "object",
+      "description": "A custom downloader definition that enables the plugin to handle a custom URL scheme when Helm resolves chart repositories.",
+      "required": [
+        "command",
+        "protocols"
+      ],
+      "properties": {
+        "command": {
+          "type": "string",
+          "description": "The command to run for downloading. Receives the URI as the final argument."
+        },
+        "protocols": {
+          "type": "array",
+          "description": "List of URI scheme prefixes this downloader handles.",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            ["s3://"],
+            ["gs://"],
+            ["oci://"]
+          ]
+        }
+      }
+    },
+    "PlatformCommand": {
+      "type": "object",
+      "description": "A platform-specific command override. Helm matches the current OS and architecture against all entries and uses the first match.",
+      "required": [
+        "command"
+      ],
+      "properties": {
+        "os": {
+          "type": "string",
+          "description": "The operating system this entry applies to. Matches GOOS values.",
+          "enum": [
+            "linux",
+            "darwin",
+            "windows",
+            "freebsd"
+          ]
+        },
+        "arch": {
+          "type": "string",
+          "description": "The CPU architecture this entry applies to. Matches GOARCH values.",
+          "enum": [
+            "amd64",
+            "arm64",
+            "arm",
+            "386",
+            "s390x",
+            "ppc64le"
+          ]
+        },
+        "command": {
+          "type": "string",
+          "description": "The command to run on this platform. Overrides the top-level command field.",
+          "examples": [
+            "$HELM_PLUGIN_DIR/bin/helm-diff-linux-amd64"
+          ]
+        }
+      }
+    }
+  }
+}
