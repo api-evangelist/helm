@@ -26,18 +26,18 @@ servers:
         default: charts.example.com
         description: The hostname of the chart repository
 tags:
-  - name: Repository
-    description: >-
-      Standard Helm chart repository endpoints for index and chart download.
-      These endpoints are required for any Helm-compatible chart repository.
-  - name: Charts
-    description: >-
-      Chart package download endpoints for retrieving packaged chart archives
-      and provenance files for signature verification.
   - name: ChartMuseum
     description: >-
       Extended API endpoints provided by ChartMuseum and compatible chart
       repository servers for JSON-based chart management.
+  - name: Charts
+    description: >-
+      Chart package download endpoints for retrieving packaged chart archives
+      and provenance files for signature verification.
+  - name: Repository
+    description: >-
+      Standard Helm chart repository endpoints for index and chart download.
+      These endpoints are required for any Helm-compatible chart repository.
 paths:
   /index.yaml:
     get:
