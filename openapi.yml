@@ -30,7 +30,7 @@ paths:
   /index.yaml:
     get:
       operationId: getRepositoryIndex
-      summary: Get Repository Index
+      summary: Helm Get Repository Index
       description: >-
         Retrieves the repository index file which contains metadata about
         all charts available in the repository. The index.yaml file lists
@@ -54,7 +54,7 @@ paths:
   /charts/{chartName}-{version}.tgz:
     get:
       operationId: downloadChartPackage
-      summary: Download Chart Package
+      summary: Helm Download Chart Package
       description: >-
         Downloads a packaged Helm chart archive (.tgz file) for a specific
         chart name and version. The archive contains the Chart.yaml,
@@ -94,7 +94,7 @@ paths:
   /charts/{chartName}-{version}.tgz.prov:
     get:
       operationId: downloadChartProvenance
-      summary: Download Chart Provenance File
+      summary: Helm Download Chart Provenance File
       description: >-
         Downloads the provenance file for a specific chart version. The
         provenance file contains a PGP signature that can be used to verify
@@ -129,7 +129,7 @@ paths:
   /api/charts:
     get:
       operationId: listAllCharts
-      summary: List All Charts
+      summary: Helm List All Charts
       description: >-
         Returns a list of all charts available in the repository. This
         endpoint is provided by ChartMuseum and other enhanced chart
@@ -151,7 +151,7 @@ paths:
   /api/charts/{chartName}:
     get:
       operationId: getChartVersions
-      summary: Get Chart Versions
+      summary: Helm Get Chart Versions
       description: >-
         Returns all available versions for a specific chart. This endpoint
         is provided by ChartMuseum and other enhanced chart repository
@@ -178,7 +178,7 @@ paths:
           description: Chart not found
     post:
       operationId: uploadChart
-      summary: Upload Chart Package
+      summary: Helm Upload Chart Package
       description: >-
         Uploads a new chart package to the repository. This endpoint is
         provided by ChartMuseum and other writable chart repository
@@ -216,7 +216,7 @@ paths:
   /api/charts/{chartName}/{version}:
     get:
       operationId: getChartVersion
-      summary: Get Specific Chart Version
+      summary: Helm Get Specific Chart Version
       description: >-
         Returns metadata for a specific version of a chart. This endpoint
         is provided by ChartMuseum and other enhanced chart repository
@@ -247,7 +247,7 @@ paths:
           description: Chart version not found
     delete:
       operationId: deleteChartVersion
-      summary: Delete Chart Version
+      summary: Helm Delete Chart Version
       description: >-
         Deletes a specific version of a chart from the repository. This
         endpoint is provided by ChartMuseum and other writable chart
