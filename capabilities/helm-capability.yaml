@@ -1,0 +1,335 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Helm Chart Repository API
+  description: The Helm Chart Repository API defines the HTTP endpoints used by Helm clients to discover and download charts
+    from a repository server. A chart repository is an HTTP server that houses an index.yaml file listing all available charts
+    and optionally packaged chart archives (.tgz files). ChartMuseum and compatible implementations extend this with a JSON-based
+    management API for listing, uploading, and deleting charts programmatically.
+  tags:
+  - Helm
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: helm
+    baseUri: https://charts.example.com
+    description: Helm Chart Repository API HTTP API.
+    resources:
+    - name: index-yaml
+      path: /index.yaml
+      operations:
+      - name: getrepositoryindex
+        method: GET
+        description: Helm Get repository index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: charts-chartname-version-tgz
+      path: /charts/{chartName}-{version}.tgz
+      operations:
+      - name: downloadchartpackage
+        method: GET
+        description: Helm Download chart package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: charts-chartname-version-tgz-prov
+      path: /charts/{chartName}-{version}.tgz.prov
+      operations:
+      - name: downloadchartprovenance
+        method: GET
+        description: Helm Download chart provenance file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-charts
+      path: /api/charts
+      operations:
+      - name: listallcharts
+        method: GET
+        description: Helm List all charts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: uploadchart
+        method: POST
+        description: Helm Upload chart package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-charts-chartname
+      path: /api/charts/{chartName}
+      operations:
+      - name: getchartversions
+        method: GET
+        description: Helm Get chart versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-charts-chartname-version
+      path: /api/charts/{chartName}/{version}
+      operations:
+      - name: getchartversion
+        method: GET
+        description: Helm Get specific chart version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletechartversion
+        method: DELETE
+        description: Helm Delete chart version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-prov
+      path: /api/prov
+      operations:
+      - name: uploadprovenance
+        method: POST
+        description: Helm Upload provenance file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: health
+      path: /health
+      operations:
+      - name: gethealth
+        method: GET
+        description: Helm Get repository health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: helm-rest
+    description: REST adapter for Helm Chart Repository API.
+    resources:
+    - path: /index.yaml
+      name: getrepositoryindex
+      operations:
+      - method: GET
+        name: getrepositoryindex
+        description: Helm Get repository index
+        call: helm.getrepositoryindex
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /charts/{chartName}-{version}.tgz
+      name: downloadchartpackage
+      operations:
+      - method: GET
+        name: downloadchartpackage
+        description: Helm Download chart package
+        call: helm.downloadchartpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /charts/{chartName}-{version}.tgz.prov
+      name: downloadchartprovenance
+      operations:
+      - method: GET
+        name: downloadchartprovenance
+        description: Helm Download chart provenance file
+        call: helm.downloadchartprovenance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/charts
+      name: listallcharts
+      operations:
+      - method: GET
+        name: listallcharts
+        description: Helm List all charts
+        call: helm.listallcharts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/charts
+      name: uploadchart
+      operations:
+      - method: POST
+        name: uploadchart
+        description: Helm Upload chart package
+        call: helm.uploadchart
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/charts/{chartName}
+      name: getchartversions
+      operations:
+      - method: GET
+        name: getchartversions
+        description: Helm Get chart versions
+        call: helm.getchartversions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/charts/{chartName}/{version}
+      name: getchartversion
+      operations:
+      - method: GET
+        name: getchartversion
+        description: Helm Get specific chart version
+        call: helm.getchartversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/charts/{chartName}/{version}
+      name: deletechartversion
+      operations:
+      - method: DELETE
+        name: deletechartversion
+        description: Helm Delete chart version
+        call: helm.deletechartversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/prov
+      name: uploadprovenance
+      operations:
+      - method: POST
+        name: uploadprovenance
+        description: Helm Upload provenance file
+        call: helm.uploadprovenance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /health
+      name: gethealth
+      operations:
+      - method: GET
+        name: gethealth
+        description: Helm Get repository health
+        call: helm.gethealth
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: helm-mcp
+    transport: http
+    description: MCP adapter for Helm Chart Repository API for AI agent use.
+    tools:
+    - name: getrepositoryindex
+      description: Helm Get repository index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.getrepositoryindex
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadchartpackage
+      description: Helm Download chart package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.downloadchartpackage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: downloadchartprovenance
+      description: Helm Download chart provenance file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.downloadchartprovenance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listallcharts
+      description: Helm List all charts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.listallcharts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadchart
+      description: Helm Upload chart package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helm.uploadchart
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getchartversions
+      description: Helm Get chart versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.getchartversions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getchartversion
+      description: Helm Get specific chart version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.getchartversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletechartversion
+      description: Helm Delete chart version
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: helm.deletechartversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadprovenance
+      description: Helm Upload provenance file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: helm.uploadprovenance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gethealth
+      description: Helm Get repository health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: helm.gethealth
+      outputParameters:
+      - type: object
+        mapping: $.
