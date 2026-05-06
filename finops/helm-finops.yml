@@ -8,10 +8,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Helm
 providerId: helm
-publisherName: Helm
-serviceCategory: API
+publisherName: The Helm Authors / Cloud Native Computing Foundation
+serviceCategory: Open Source / DevOps
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Charts
   - Cloud Native
@@ -19,174 +20,118 @@ tags:
   - DevOps
   - Kubernetes
   - Package Manager
+  - Open Source
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Helm API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+notes: Helm is a CNCF-graduated open-source project distributed under Apache 2.0; it has no invoice surface
+  of its own. FinOps for a Helm-based release pipeline is really FinOps over (a) the Kubernetes clusters Helm
+  installs into, (b) the chart repository / OCI registry the charts live in, and (c) the storage/egress costs
+  of upstream image pulls referenced by chart values. Meters and unit-economics are therefore stubs that
+  point at the underlying cloud and registry providers.
+description: 'FOCUS-aligned FinOps definition for Helm. Helm itself is zero-cost open-source software;
+  cost is incurred downstream by the cluster operator, registry host, and image store. This artifact
+  records the FinOps shape of a Helm-driven release pipeline rather than a Helm-billed product.'
+sources:
+  - https://helm.sh/docs/
+  - https://github.com/helm/helm
+  - https://www.cncf.io/projects/helm/
+billingModel:
+  pricingCategory: Free / Open Source
+  billingFrequency: Not Applicable
+  billingCurrency: USD
+  chargeCategories:
+    - Adjustment
+  chargeFrequency: Not Applicable
+focusColumns:
+  ServiceName: Helm
+  ServiceCategory: Open Source / DevOps
+  ProviderName: Helm
+  PublisherName: The Helm Authors
+  InvoiceIssuerName: 'Not applicable (open source)'
+  PricingCategory: Free
+  PricingUnit: install
+  BillingCurrency: USD
+  ChargeCategory: Adjustment
 principles:
   - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
+    description: Track Helm release activity through 'helm list', the Kubernetes audit log, and (when
+      using GitOps) ArgoCD or Flux dashboards. Tag releases with team / environment labels so cluster
+      cost attribution can flow through.
   - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
+    description: Allocate spend not against Helm itself but against the Kubernetes namespaces and label
+      sets that Helm installs into. Use cluster-cost tools (OpenCost, Kubecost) keyed on the labels Helm
+      sets via 'app.kubernetes.io/instance'.
   - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
+    description: Helm-specific levers - prefer OCI registries with authenticated pulls to avoid Docker Hub
+      anonymous limits, mirror frequently-pulled charts internally, pin chart versions to skip
+      unnecessary 'helm repo update' churn, and use 'helm template' in CI to fail fast before consuming
+      cluster resources.
   - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
+    description: Owners of each Helm chart in your internal catalog are responsible for the resource
+      requests/limits in default values.yaml; FinOps reviews should look at chart defaults as a primary
+      lever for cluster cost.
 domains:
   - name: Understand Usage and Cost
     capabilities:
       - Data Ingestion
       - Allocation
       - Reporting and Analytics
-      - Anomaly Management
   - name: Quantify Business Value
     capabilities:
       - Planning and Estimating
       - Forecasting
-      - Budgeting
-      - Benchmarking
       - Unit Economics
   - name: Optimize Usage and Cost
     capabilities:
       - Architecting for Cloud
-      - Rate Optimization
       - Workload Optimization
-      - Cloud Sustainability
       - Licensing and SaaS
   - name: Manage the FinOps Practice
     capabilities:
       - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
       - Onboarding Workloads
       - Intersecting Disciplines
-billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
-  chargeCategories:
-    - Usage
-    - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
-focusColumns:
-  ServiceName: Helm
-  ServiceCategory: Developer Tools / API
-  ProviderName: Helm
-  PublisherName: Helm
-  InvoiceIssuerName: Helm
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: chart_installs
+    description: Number of Helm releases installed per cluster / namespace; surrogate for downstream
+      cluster cost
+    unit: install
+    aggregation: count
+    dimensions:
+      - cluster
+      - namespace
+      - chart_name
+      - chart_version
+  - name: chart_pulls
+    description: Pulls of chart artifacts from the upstream chart repository or OCI registry
+    unit: pull
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - registry
+      - chart_name
+      - chart_version
+  - name: image_pulls
+    description: Container image pulls triggered by Helm-installed workloads (registry-side meter, not
+      Helm-side)
+    unit: pull
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
+      - registry
+      - image
 apis:
   - name: Helm Chart Repository API
     baseURL: ''
     tags:
       - Charts
-      - Package Registry
-      - Repository
-    serviceName: Helm Chart Repository API
-    serviceCategory: API
-  - name: Helm Chart.yaml Schema
-    baseURL: ''
-    tags:
-      - Chart Metadata
-      - Schema
-      - Validation
-    serviceName: Helm Chart.yaml Schema
-    serviceCategory: API
-  - name: Helm Values YAML Schema
-    baseURL: ''
-    tags:
-      - Configuration
-      - Schema
-      - Values
-    serviceName: Helm Values YAML Schema
-    serviceCategory: API
-  - name: Helm Repository Index Schema
-    baseURL: ''
-    tags:
-      - Discovery
-      - Repository Index
-      - Schema
-    serviceName: Helm Repository Index Schema
-    serviceCategory: API
-  - name: Helm JSON-LD Context
-    baseURL: ''
-    tags:
-      - JSON-LD
-      - Linked Data
-      - Semantics
-    serviceName: Helm JSON-LD Context
-    serviceCategory: API
-  - name: Helm Go SDK
-    baseURL: ''
-    tags:
-      - Go
+      - Helm
       - Kubernetes
       - Package Manager
-      - SDK
-    serviceName: Helm Go SDK
-    serviceCategory: API
-  - name: Helm Plugins
-    baseURL: ''
-    tags:
-      - CLI
-      - Extensions
-      - Kubernetes
-      - Plugins
-    serviceName: Helm Plugins
-    serviceCategory: API
-  - name: Helm Chart Template API
-    baseURL: ''
-    tags:
-      - Charts
-      - Go Templates
-      - Kubernetes
-      - Templates
-    serviceName: Helm Chart Template API
-    serviceCategory: API
+    serviceName: Helm Chart Repository API
+    serviceCategory: Open Source / DevOps
 unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+  - name: Cost per Helm Release
+    metric: cluster_cost / chart_installs
+    target: TBD (depends on chart resource defaults)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

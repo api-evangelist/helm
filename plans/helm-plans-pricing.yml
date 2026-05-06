@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Helm
 providerId: helm
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Charts
   - Cloud Native
@@ -12,150 +13,61 @@ tags:
   - DevOps
   - Kubernetes
   - Package Manager
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Open Source
+notes: Helm is a CNCF-graduated open-source project (the package manager for Kubernetes), distributed under
+  the Apache 2.0 license. The Helm project itself does not sell hosted APIs and publishes no commercial
+  pricing. The 'Helm Chart Repository API' is a specification consumers self-host (or that downstream vendors
+  such as Artifact Hub, JFrog Artifactory, GitHub, Harbor, Bitnami host on commercial terms of their own).
+  Plan / pricing artifacts therefore belong to the downstream chart-repository host, not to the Helm project.
+  This artifact is left intentionally minimal until / unless the Helm project offers a paid hosted service.
+sources:
+  - https://helm.sh/docs/
+  - https://github.com/helm/helm
+  - https://www.cncf.io/projects/helm/
 plans:
-  - id: helm-free
-    name: Free
+  - id: helm-open-source
+    name: Helm (Open Source)
     type: freemium
-    description: Free entry tier for the Helm API surface. Intended for evaluation, prototyping, and low-volume
-      integrations. Real limits and pricing must be reconciled with the provider's published plan documentation.
+    description: Helm is free, open-source software released under the Apache 2.0 license by the Helm project
+      and the Cloud Native Computing Foundation. There is no charge to download, run, distribute, or self-host
+      Helm or its chart-repository specification. Costs incurred by users are entirely infrastructure costs
+      for self-hosting (object storage, compute, egress) or fees paid to third-party chart-repository
+      vendors.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Helm CLI and Libraries
+        description: Open-source distribution; no charge from the Helm project
+        name: distribution
         type: quota
-        metric: requests
-        limit: 1000
+        metric: install
+        limit: -1
         timeFrame: month
         geo: global
         domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Helm Chart Repository API
-      - name: Helm Chart.yaml Schema
-      - name: Helm Values YAML Schema
-      - name: Helm Repository Index Schema
-      - name: Helm JSON-LD Context
-      - name: Helm Go SDK
-      - name: Helm Plugins
-      - name: Helm Chart Template API
-  - id: helm-pro
-    name: Professional
-    type: paid
-    description: Production tier for Helm. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Self-Hosted Chart Repository
+        description: Costs are external (object storage / CDN / compute paid to AWS, GCP, Azure, etc.)
+        name: self_hosted_repo
         type: metered
-        metric: requests
+        metric: varies
         limit: -1
         timeFrame: month
         geo: global
         domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: 'see your hosting provider (S3, GCS, Azure Blob, OCI registry, GitHub Pages, etc.)'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Helm Chart Repository API
+      - name: Apache 2.0 License
+      - name: CNCF Graduated Project
+      - name: Helm CLI
+      - name: Helm Go SDK
+      - name: Helm Plugins
+      - name: Helm Chart Repository Specification
       - name: Helm Chart.yaml Schema
       - name: Helm Values YAML Schema
       - name: Helm Repository Index Schema
-      - name: Helm JSON-LD Context
-      - name: Helm Go SDK
-      - name: Helm Plugins
-      - name: Helm Chart Template API
-  - id: helm-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Helm. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
-    entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Helm Chart Repository API
-      - name: Helm Chart.yaml Schema
-      - name: Helm Values YAML Schema
-      - name: Helm Repository Index Schema
-      - name: Helm JSON-LD Context
-      - name: Helm Go SDK
-      - name: Helm Plugins
       - name: Helm Chart Template API
 maintainers:
   - FN: Kin Lane
