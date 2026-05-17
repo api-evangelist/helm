@@ -97,7 +97,7 @@ apis:
       W3C PROV. Enables semantic interoperability of Helm chart metadata.
     humanURL: https://helm.sh/docs/
     properties:
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/helm-context.jsonld
     tags:
       - JSON-LD
@@ -163,7 +163,7 @@ apis:
       - type: Reference
         url: https://helm.sh/docs/chart_template_guide/function_list/
 common:
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/helm-context.jsonld
   - type: JSONSchema
     url: json-schema/helm-plugin-schema.json
@@ -175,11 +175,11 @@ common:
     name: Helm Documentation
     description: Official Helm documentation covering installation, chart development, and best practices.
     url: https://helm.sh/docs/
-  - type: Getting Started
+  - type: GettingStarted
     name: Helm Quickstart Guide
     description: Step-by-step guide to installing Helm and deploying your first chart.
     url: https://helm.sh/docs/intro/quickstart/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     name: Helm GitHub Organization
     description: Source code repositories for Helm and related projects.
     url: https://github.com/helm
@@ -191,7 +191,7 @@ common:
     name: Helm Blog
     description: Official blog with announcements, releases, and community updates.
     url: https://helm.sh/blog/
-  - type: Change Log
+  - type: ChangeLog
     name: Helm Changelog
     description: Full changelog and release history for Helm.
     url: https://helm.sh/docs/changelog/
