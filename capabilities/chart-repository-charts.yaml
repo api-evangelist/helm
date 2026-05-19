@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Helm Chart Repository API — Charts
+  description: 'Helm Chart Repository API — Charts. 2 operations. Lead operation: Helm Download chart package. Self-contained
+    Naftiko capability covering one Helm business surface.'
+  tags:
+  - Helm
+  - Charts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    HELM_API_KEY: HELM_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: chart-repository-charts
+    baseUri: https://{repository-host}
+    description: Helm Chart Repository API — Charts business capability. Self-contained, no shared references.
+    resources:
+    - name: charts-chartName}-{version}.tgz
+      path: /charts/{chartName}-{version}.tgz
+      operations:
+      - name: downloadchartpackage
+        method: GET
+        description: Helm Download chart package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: charts-chartName}-{version}.tgz.prov
+      path: /charts/{chartName}-{version}.tgz.prov
+      operations:
+      - name: downloadchartprovenance
+        method: GET
+        description: Helm Download chart provenance file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: chart-repository-charts-rest
+    port: 8080
+    description: REST adapter for Helm Chart Repository API — Charts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/charts/chartname-version-tgz
+      name: charts-chartname-version-tgz
+      description: REST surface for charts-chartName}-{version}.tgz.
+      operations:
+      - method: GET
+        name: downloadchartpackage
+        description: Helm Download chart package
+        call: chart-repository-charts.downloadchartpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/charts/chartname-version-tgz-prov
+      name: charts-chartname-version-tgz-prov
+      description: REST surface for charts-chartName}-{version}.tgz.prov.
+      operations:
+      - method: GET
+        name: downloadchartprovenance
+        description: Helm Download chart provenance file
+        call: chart-repository-charts.downloadchartprovenance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: chart-repository-charts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Helm Chart Repository API — Charts. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: helm-download-chart-package
+      description: Helm Download chart package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chart-repository-charts.downloadchartpackage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: helm-download-chart-provenance-file
+      description: Helm Download chart provenance file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: chart-repository-charts.downloadchartprovenance
+      outputParameters:
+      - type: object
+        mapping: $.
