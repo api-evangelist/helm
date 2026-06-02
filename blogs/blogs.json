@@ -2,12 +2,20 @@
   "repo": "helm",
   "feeds": [
     {
-      "source": "https://helm.sh/blog/",
+      "source": "https://helm.sh/blog/atom.xml",
       "feed_url": "https://helm.sh/blog/atom.xml",
-      "title": "Helm Blog",
-      "saved": 13
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://github.com/helm/helm",
+      "feed_url": "https://github.com/helm/helm",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 23,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 24,
+  "fetched": "2026-06-01T23:35:02Z"
 }
