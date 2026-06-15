@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Helm Chart Repository API",
+    "version": "v3.17.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repository",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Helm Get repository index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/index.yaml"
+          },
+          "docs": "Retrieves the repository index file which contains metadata about all charts available in the repository. The index.yaml file lists every chart version along with its description, maintainers, download URLs, and content digests. Helm clients use this endpoint to search and resolve chart dependencies."
+        },
+        {
+          "info": {
+            "name": "Helm Get repository health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/health"
+          },
+          "docs": "Returns the health status of the chart repository server. Useful for liveness and readiness probes in Kubernetes deployments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Charts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Helm Download chart package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/charts/:chartName-:version.tgz",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Downloads a packaged Helm chart archive (.tgz file) for a specific chart name and version. The archive contains the Chart.yaml, values.yaml, templates, and other chart files. Helm clients use this endpoint after resolving chart references from the index."
+        },
+        {
+          "info": {
+            "name": "Helm Download chart provenance file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/charts/:chartName-:version.tgz.prov",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Downloads the provenance file for a specific chart version. The provenance file contains a PGP signature used to verify the integrity and origin of the chart package. This endpoint is optional and only available for cryptographically signed charts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ChartMuseum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Helm List all charts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/api/charts"
+          },
+          "docs": "Returns a list of all charts available in the repository grouped by chart name. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations supporting JSON-based management."
+        },
+        {
+          "info": {
+            "name": "Helm Upload chart package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{repository-host}/api/charts",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "chart",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "prov",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new chart package to the repository. This endpoint is provided by ChartMuseum and other writable chart repository implementations. The chart archive is sent as multipart form data or as a raw binary body."
+        },
+        {
+          "info": {
+            "name": "Helm Get chart versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/api/charts/:chartName",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              }
+            ]
+          },
+          "docs": "Returns all available versions for a specific chart. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations."
+        },
+        {
+          "info": {
+            "name": "Helm Get specific chart version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/api/charts/:chartName/:version",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific version of a named chart. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations."
+        },
+        {
+          "info": {
+            "name": "Helm Delete chart version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{repository-host}/api/charts/:chartName/:version",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Deletes a specific version of a chart from the repository. This endpoint is provided by ChartMuseum and other writable chart repository implementations."
+        },
+        {
+          "info": {
+            "name": "Helm Upload provenance file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{repository-host}/api/prov",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "prov",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a PGP provenance file to the repository independently of a chart package. This endpoint is provided by ChartMuseum for cases where chart and provenance files are uploaded separately."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

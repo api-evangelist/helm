@@ -1,0 +1,1754 @@
+{
+  "item": [
+    {
+      "id": "398f807d-7af5-45c5-ae99-9956991570e8",
+      "name": "ChartMuseum",
+      "description": {
+        "content": "Extended API endpoints provided by ChartMuseum and compatible chart repository servers for JSON-based chart management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f51f094-7de8-4b9f-a933-ae1385be25c4",
+          "name": "Helm List all charts",
+          "request": {
+            "name": "Helm List all charts",
+            "description": {
+              "content": "Returns a list of all charts available in the repository grouped by chart name. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations supporting JSON-based management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "charts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cb1b979-a671-42a0-aa1c-608437bb4eec",
+              "name": "Chart list returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"apiVersion\": \"v2\",\n      \"name\": \"nginx\",\n      \"version\": \"1.2.3\",\n      \"kubeVersion\": \">= 1.19.0\",\n      \"description\": \"string\",\n      \"type\": \"application\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"home\": \"https://y.srsY,A3T\",\n      \"sources\": [\n        \"http://gprTkHqjRzfFUEzohYqSII.ubkpSDtQS85jgW3EGgDXEfKKSc+a2kzfgehif770sjnBs8QDBEXg9TH9x2HbqbCs-t\",\n        \"https://UwnBNuWwFsOEnJXBmBfysQIJs.fjysUGLAU94B5YFYx-mHsAODQmbMLOzztPU4MTdyT5xkLdd\"\n      ],\n      \"maintainers\": [\n        {\n          \"name\": \"string\",\n          \"email\": \"yt0@zHXN.lb\",\n          \"url\": \"http://LZICrdAyErYzEvoKvSbjba.kazaR4rhV\"\n        },\n        {\n          \"name\": \"string\",\n          \"email\": \"rXo3@VnuHwGPZBTaTWYpBsynqwSSYgPHQa.epd\",\n          \"url\": \"http://JvteytOfBQycj.ueW4Qpz\"\n        }\n      ],\n      \"icon\": \"https://TzUky.wpoAXLa6Grpt1p.8Myfn5KDttYeVLt0lhepNqzbx,\",\n      \"appVersion\": \"1.21.0\",\n      \"deprecated\": false,\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"urls\": [\n        \"http://cWHCSVwufhiTKTRGBzXgfd.nwRLasJJnnRwCp3MRYQBCkO2eLqKW\",\n        \"http://RfMiRxugcBduTZgaKUIpWK.osyZGws,tTRpkow4z-H3fY2VSghoAPZnfBBsd0RoTAMCzXiCdcNi7eyXKM.fyd9E2MW.l,6uYzgjYUA\"\n      ],\n      \"created\": \"1960-06-23T14:56:45.792Z\",\n      \"digest\": \"sha256:abc123def456\",\n      \"dependencies\": [\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"http://iTFRIMmryWPmYYFsKvQsdpAIOFOli.cowRKkL3L+n1VsG1kEFjAkfdTM3VMQobVnT-N54fiQ6oYPd6W9b9eDRkMB6Pi39sHTUIMiO,9fH\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"http://SCXnGtCGrtUKWDudqjaSpWbBmsMZIkVXV.tdjwtdsy.BykbtIpr-PfOhpJtXqV3V2ZehANbM73YogQ+kDDYh\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"v2\",\n      \"name\": \"nginx\",\n      \"version\": \"1.2.3\",\n      \"kubeVersion\": \">= 1.19.0\",\n      \"description\": \"string\",\n      \"type\": \"application\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"home\": \"http://yZdEYOxHdvOZGpANIxUiwsgeeWriHl.xiAchUY50Ye,kGQg,tkfdjqUp\",\n      \"sources\": [\n        \"http://ZK.juuksQQHQTIKjc7dklQizRxmwvZFjc6.ToZm+i0,\",\n        \"http://pp.qtdlFpUVy+ZW5R\"\n      ],\n      \"maintainers\": [\n        {\n          \"name\": \"string\",\n          \"email\": \"K3wlZlmCNStj@qTxr.szf\",\n          \"url\": \"https://bx.cuyc.,3ea2-uu7fAjNSMnCkguECF2ZdkrBa8O-UtBVbR3+xMsEK6S6h0+5B\"\n        },\n        {\n          \"name\": \"string\",\n          \"email\": \"CAEP@edMhrTftywFnhwRHUtEQJhRriOyD.dsuv\",\n          \"url\": \"https://lLQqxGPYtIGnYFovetHSIMHxdetzx.gpkuioQZ9XMcuM8kyUfRgUYO+X2KlBsqVso2E8KB\"\n        }\n      ],\n      \"icon\": \"http://eeTajiKdmOwQgpUqCbkpfIBq.fsbp-etao5AvVcbyI26WICBCMWULT,pBzbVALncusyVg\",\n      \"appVersion\": \"1.21.0\",\n      \"deprecated\": false,\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"urls\": [\n        \"http://NEsbNCoVzoJXWfYhm.tyAzIR,7uAg,eDuIoVc2+-vd+,ZAnNM\",\n        \"https://dOUp.czldzKRdQIWdndyLemoKZY0xgDuqI4Qaxhayn0zVi\"\n      ],\n      \"created\": \"1990-09-22T15:16:12.100Z\",\n      \"digest\": \"sha256:abc123def456\",\n      \"dependencies\": [\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"http://vIl.ewiW1jfpG8Ewp0,82XQBBplhzgMLNeWnL6K4zJps1tm6XB4WB-JUiwch\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"http://lsYK.chHlQYwkV-epAwKTmi68QPe0AT6nWblcFyhs3nsSEQCLNcPnatWcmlgY8BzXMlw5fZEEOnQ-Q.r7\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"key_1\": [\n    {\n      \"apiVersion\": \"v2\",\n      \"name\": \"nginx\",\n      \"version\": \"1.2.3\",\n      \"kubeVersion\": \">= 1.19.0\",\n      \"description\": \"string\",\n      \"type\": \"application\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"home\": \"https://FLtditgbSEXZHalkGNlTXtfHzSgG.mghyy2pjyoxUr1giSr4GLHiT\",\n      \"sources\": [\n        \"http://VkDYRKXgJvenkkzPaBBtOPONAtTDokNj.xgbJklJwGrpdh8Pwv.k7+V,WmmZ5,PYpoM,r0Dg8L7LoLpPqidpOcrA6lwmb\",\n        \"http://xL.cteZc+2g87vaUPzENb4Ar2,7\"\n      ],\n      \"maintainers\": [\n        {\n          \"name\": \"string\",\n          \"email\": \"1mPJZqCgkj9hRSx@StETgjopa.sm\",\n          \"url\": \"http://ZLtwSJavCBNmyjwJmqFR.vpyre6d,\"\n        },\n        {\n          \"name\": \"string\",\n          \"email\": \"Z8ij@JjEpPHzQHHnaeiNeqqq.ltji\",\n          \"url\": \"http://JfTgLiqxpv.ojojchTU+AyU0W5ZsMhOPb1ptd8W\"\n        }\n      ],\n      \"icon\": \"https://YBHSKQ.kyeiVTu812TFTxGS3RP1BPfR\",\n      \"appVersion\": \"1.21.0\",\n      \"deprecated\": false,\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"urls\": [\n        \"https://kqcOYgr.jeEKFwU0ly2Q8f59lekO.O0vfzSyEfh,D4htFDTdX8t\",\n        \"http://puzzIwkTwXWOOEmJEWlpBTOO.fstT15PxX+Zwfomc1+fhOxrYhVR25QpcvfN9VkfYZljIZpuOvU1\"\n      ],\n      \"created\": \"1956-08-31T22:38:00.177Z\",\n      \"digest\": \"sha256:abc123def456\",\n      \"dependencies\": [\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"https://bYsUQmLNrSCebyupAQez.sbtaA6.hr-IxYU,DA.NIRqEL.tr5ToZdLEqKotl+2PEKhqh89\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"https://lbRo.szgFbjwoRMWxoBOE,31WKEBwfSfql7H9xlkoJUHM5DbazKOCpJqJ\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        }\n      ]\n    },\n    {\n      \"apiVersion\": \"v2\",\n      \"name\": \"nginx\",\n      \"version\": \"1.2.3\",\n      \"kubeVersion\": \">= 1.19.0\",\n      \"description\": \"string\",\n      \"type\": \"application\",\n      \"keywords\": [\n        \"string\",\n        \"string\"\n      ],\n      \"home\": \"https://ue.xwzzI2WFQCImIXSOQiaWXcn4OxqSFye4Es2-f9MWdomvxa21N3Jy3zvBAwx2JHzU\",\n      \"sources\": [\n        \"https://kKMHlGRYQLNIAEWJKbdGytcquUMHiauMI.alfybC0fOHvS7H-MxOpYDAIaZo\",\n        \"https://jPdZJbbhU.tdmdWDN89ixAwCFBON.efSMXesDr\"\n      ],\n      \"maintainers\": [\n        {\n          \"name\": \"string\",\n          \"email\": \"YMutZ6X5@WSgetBsw.xzhs\",\n          \"url\": \"https://wCqnnFqYILWQXNwbCWkF.lidvXdcrNWFt,ftlK0MxlQxFSHN1bms.xQ4S5NNhw3ms4fACv39wQB\"\n        },\n        {\n          \"name\": \"string\",\n          \"email\": \"R2vVg@Bpy.jyns\",\n          \"url\": \"https://yqrznbbizwmzrnFAIknE.wqqtiyNB8YPzwOM7BMb5WLZfrof\"\n        }\n      ],\n      \"icon\": \"http://yfXWitxbthszvMmfKkYGGJajoH.ooYB-Au9upBIpL6qHJKGB1EGY8\",\n      \"appVersion\": \"1.21.0\",\n      \"deprecated\": false,\n      \"annotations\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"urls\": [\n        \"https://xP.fjLJoTIDg-YMxJzCvpshSqSSy3feGndS1D1QRQSU7j1lKIfnI.ua\",\n        \"https://CInUVbvgTb.hwssXoJEkpp5kS9-k8+5czL\"\n      ],\n      \"created\": \"1970-11-22T04:14:21.579Z\",\n      \"digest\": \"sha256:abc123def456\",\n      \"dependencies\": [\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"https://wLqXwGDcjgzwyabIS.qgbHQcis3znBwOBgWPKsAv42eKWvt6mKajGunJB\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"version\": \"string\",\n          \"repository\": \"http://rLUDzDgxdAYiBArqpctrAYNSN.htoYRYdo6euU.iHz.WX+LxEHm\",\n          \"condition\": \"string\",\n          \"tags\": [\n            \"string\",\n            \"string\"\n          ],\n          \"alias\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d11fbb4-f46d-410b-863d-e3c242ae3a52",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1d95a63-e27a-4793-8a3f-fe9b812015d8",
+          "name": "Helm Upload chart package",
+          "request": {
+            "name": "Helm Upload chart package",
+            "description": {
+              "content": "Uploads a new chart package to the repository. This endpoint is provided by ChartMuseum and other writable chart repository implementations. The chart archive is sent as multipart form data or as a raw binary body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "charts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "chart",
+                  "type": "file",
+                  "description": "The chart package archive (.tgz file)"
+                },
+                {
+                  "key": "prov",
+                  "type": "file",
+                  "description": "Optional PGP provenance file (.tgz.prov)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6eb6c52-19ca-4925-8456-a447b8cef832",
+              "name": "Chart uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The chart package archive (.tgz file)",
+                        "type": "text/plain"
+                      },
+                      "key": "chart",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"saved\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "190e3f3f-40cf-4aca-82fe-f1602032f40c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The chart package archive (.tgz file)",
+                        "type": "text/plain"
+                      },
+                      "key": "chart",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07cebb31-9eca-41a0-8554-a3472ba3a2b4",
+              "name": "Chart version already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The chart package archive (.tgz file)",
+                        "type": "text/plain"
+                      },
+                      "key": "chart",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Optional PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4a8e03b-e01b-4573-ab10-8e3c180ae9bc",
+          "name": "Helm Get chart versions",
+          "request": {
+            "name": "Helm Get chart versions",
+            "description": {
+              "content": "Returns all available versions for a specific chart. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "charts",
+                ":chartName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chartName",
+                  "description": "(Required) The name of the chart"
+                },
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a23328d-0ec3-4632-9bb2-bba99a927831",
+              "name": "Chart versions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apiVersion\": \"v2\",\n    \"name\": \"nginx\",\n    \"version\": \"1.2.3\",\n    \"kubeVersion\": \">= 1.19.0\",\n    \"description\": \"string\",\n    \"type\": \"application\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"home\": \"https://vrMVPWgVoQJUKmwwAYKa.ckvruAmG0Jgw6\",\n    \"sources\": [\n      \"http://CoexI.zxrB0ZtrN,BwNrYV1rfnMYnP0gsiYJQ949WnW879YREmVKZSZsZvSOO8e\",\n      \"http://zqfdCNXopQWFquRPpUalJsxoMWw.onpoJrLsBG6vRnaq3-rraAbBu8646cVZcSUSVIqMZEnVu8tgzTqDS8T\"\n    ],\n    \"maintainers\": [\n      {\n        \"name\": \"string\",\n        \"email\": \"tOQEW@vZenmRGaMDKUQiyTbYnmCOYHx.twsm\",\n        \"url\": \"https://gQMvUsH.beszrJki9G5HVdWThOubMXheclnHoItO4WPFRoRaVcTH,Ia7u\"\n      },\n      {\n        \"name\": \"string\",\n        \"email\": \"U9pb@lFtHbbxzFabDKHvsnXJPPjkgcT.hc\",\n        \"url\": \"http://uq.ohVz.FFIFnenscFBmve0eHiHiE\"\n      }\n    ],\n    \"icon\": \"http://sMTkeRAhFuAQR.aazQIG9b+nh43pFbB5yQzRnoTQGf3f.6SJDzSm5WKiU-9Xgff1PgPfeCGJbjtFL5ogum\",\n    \"appVersion\": \"1.21.0\",\n    \"deprecated\": false,\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"urls\": [\n      \"http://pHOQkObFexJlrweSjthLnjoX.ejuqo,NpjtayTUNA6p-lojuHI\",\n      \"http://Cwhuv.osdq\"\n    ],\n    \"created\": \"2000-09-13T04:05:06.559Z\",\n    \"digest\": \"sha256:abc123def456\",\n    \"dependencies\": [\n      {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"repository\": \"https://YYpvblzfRa.ezwsbi+EQuzyvZjNiJjnX1s\",\n        \"condition\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alias\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"repository\": \"http://lwwdraXbYIZYzPcodk.koYqbx7y\",\n        \"condition\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alias\": \"string\"\n      }\n    ]\n  },\n  {\n    \"apiVersion\": \"v2\",\n    \"name\": \"nginx\",\n    \"version\": \"1.2.3\",\n    \"kubeVersion\": \">= 1.19.0\",\n    \"description\": \"string\",\n    \"type\": \"application\",\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"home\": \"https://bJgvRUgEzvAdth.qlnVr6uQINU33MofvwL7t4tJP2PkkMqcRxK\",\n    \"sources\": [\n      \"http://nIRCOzolxAQIlxxDMrPvGXl.nkB5JbwY1Xpnoi80HZ,U\",\n      \"https://HEzWiJUNFaHagHAqwqoGzFkqnQ.qmCu+U0G3QfWTmrMcFrn5xlE5X8bgZh2tn6hr6G\"\n    ],\n    \"maintainers\": [\n      {\n        \"name\": \"string\",\n        \"email\": \"LVMDVyJuy@JBQZcdNfjSi.pine\",\n        \"url\": \"https://nLOBPz.khhI3mor8JueIAZ9CE9oErBuOYvPCVwLSHJw9Jk3nsejH58sxos\"\n      },\n      {\n        \"name\": \"string\",\n        \"email\": \"5Ij8NUUerH@jKjFivwXwSkpnhRKYWWTDkT.wv\",\n        \"url\": \"http://QhWZAFQJHzjlKFaLdvmWbLA.uieYK9gAZL\"\n      }\n    ],\n    \"icon\": \"http://TuwcKMhlCeQOVMHrEbAvPdgFCx.woumfnjoUGjVoulkWgcR3ycMVxkCWfCOirxJPOlUsmEDo59mjPv0JTu9otDoyhz615e\",\n    \"appVersion\": \"1.21.0\",\n    \"deprecated\": false,\n    \"annotations\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"urls\": [\n      \"http://rKCEXASmLHfMdqONvONCLAG.yskxkVMoQI6HQgp+6j6SL+aNdyfoIh.tfDs7A8IMXsh\",\n      \"http://qzzJRADEFr.kqaoUwNz+JDKBqKqM0rc+etC6zuk562ENusrU0artVLJdjqn2\"\n    ],\n    \"created\": \"2007-03-21T11:56:59.133Z\",\n    \"digest\": \"sha256:abc123def456\",\n    \"dependencies\": [\n      {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"repository\": \"https://rcYrCEFygwEcsvBSv.xjyeP93OO52QANIuUUDCfQEjl,Y0Swd8ZLcNwGwxp\",\n        \"condition\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alias\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"repository\": \"https://vbcIOEbsCyek.sgbpfDgwTZa95wPJhh5wykR5Z\",\n        \"condition\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"alias\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d34c1ed-3c1b-493a-b07d-f548c08403a1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "679365fd-25ba-43e7-b24f-1b3664218bc8",
+              "name": "Chart not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a93a8549-8bca-4206-bbf8-1f86aa0846a0",
+          "name": "Helm Get specific chart version",
+          "request": {
+            "name": "Helm Get specific chart version",
+            "description": {
+              "content": "Returns metadata for a specific version of a named chart. This endpoint is provided by ChartMuseum and other enhanced chart repository implementations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "charts",
+                ":chartName",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chartName",
+                  "description": "(Required) The name of the chart"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The SemVer 2 version of the chart"
+                },
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d5494f7-eb01-4e7b-b58e-5fec8509650e",
+              "name": "Chart version metadata returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apiVersion\": \"v2\",\n  \"name\": \"nginx\",\n  \"version\": \"1.2.3\",\n  \"kubeVersion\": \">= 1.19.0\",\n  \"description\": \"string\",\n  \"type\": \"application\",\n  \"keywords\": [\n    \"string\",\n    \"string\"\n  ],\n  \"home\": \"http://lXPZlWODuQX.noy31RCsgFJ5rq2kC+dkW49CnHyUM9CVGqAVMeMGycjKn7PMyHPshwDNBRUQDwOONvmmp\",\n  \"sources\": [\n    \"http://FrxywJPQeFxAlpiK.emRomgc2,iH,hoMd9LLiFAsek\",\n    \"https://xtAMJnWaMfClCshsePHSKqXwWo.nabzKiX-,n33QFWPU,vCMPaBzZB59QrNYpuZixBesOM.rxNFNR1QKu+3p,CWAVnvfelLh\"\n  ],\n  \"maintainers\": [\n    {\n      \"name\": \"string\",\n      \"email\": \"qxkMoWtd@PQKjHukGogASMO.tgo\",\n      \"url\": \"http://acqqxTahrRjJRHZXlLe.uomhX6k2s1VaO2oxlMvuFbbzpaR3kxFVa4PIz3xiAlZUR6\"\n    },\n    {\n      \"name\": \"string\",\n      \"email\": \"owMWAy@GxFdAvttwjlrtOWSiXgiRerdjSRyA.yj\",\n      \"url\": \"http://FLKpaNHpGdZZaeiAuukJYsJfAA.aqoTvG.pUGdYuyFQgkDkDzHahSVYxCZXdn-uOBL,xyjYgOPmJHZCiNAFNuTw219AElRvr\"\n    }\n  ],\n  \"icon\": \"http://JGkPhnZFdUHGPjXjbAYhwHKpoULfWFcOp.aapdEj,y\",\n  \"appVersion\": \"1.21.0\",\n  \"deprecated\": false,\n  \"annotations\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"urls\": [\n    \"https://appMQYeyTHCURTWfuWegXCGIU.ifhilQ-zgTfnUYamCZAvbguHX5Yo7vHKcHWkprAV\",\n    \"https://bJTsKlujMBisTnNxfFYCZCXGLaAvlQLpx.umhtKrzs+Qw7LBsG7wh1o7VCy6qp\"\n  ],\n  \"created\": \"2011-06-14T00:52:35.454Z\",\n  \"digest\": \"sha256:abc123def456\",\n  \"dependencies\": [\n    {\n      \"name\": \"string\",\n      \"version\": \"string\",\n      \"repository\": \"http://WhcYOKiogOtypvxu.uvpuXKEfHQnS4sPq.yX,VkENjQ.G2+I9iDWQiHf6MsjAOG\",\n      \"condition\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"alias\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"version\": \"string\",\n      \"repository\": \"https://CFJpEGamJBpxBwoQoPEuA.plats-JSTRgTBjIOYH+uH5H8\",\n      \"condition\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"alias\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "752c0ed6-b5b8-4a78-8aef-c0de6fff2800",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3dd7f1e-aab5-4083-a353-e986fe8f49b4",
+              "name": "Chart version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28d919c8-b4a9-45b0-920f-b04c77d78fc3",
+          "name": "Helm Delete chart version",
+          "request": {
+            "name": "Helm Delete chart version",
+            "description": {
+              "content": "Deletes a specific version of a chart from the repository. This endpoint is provided by ChartMuseum and other writable chart repository implementations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "charts",
+                ":chartName",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chartName",
+                  "description": "(Required) The name of the chart"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) The SemVer 2 version of the chart"
+                },
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ef53867-5e82-43d5-98e7-271e355eeedd",
+              "name": "Chart version deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3723a18a-84f2-4cb8-93b5-9afcdf8deb28",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f11164a1-100b-459d-bca7-7024170ac4cb",
+              "name": "Chart version not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "charts",
+                    ":chartName",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chartName",
+                      "description": "(Required) The name of the chart"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) The SemVer 2 version of the chart"
+                    },
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4587ec0-1a2c-4fa5-af5c-a65eaa739889",
+          "name": "Helm Upload provenance file",
+          "request": {
+            "name": "Helm Upload provenance file",
+            "description": {
+              "content": "Uploads a PGP provenance file to the repository independently of a chart package. This endpoint is provided by ChartMuseum for cases where chart and provenance files are uploaded separately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "prov"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "prov",
+                  "type": "file",
+                  "description": "The PGP provenance file (.tgz.prov)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44be15b0-346d-4ac3-8240-2671a5baa1bf",
+              "name": "Provenance file uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"saved\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12c9d0c8-9082-4e8e-949d-326fc7b6e11f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e6179a5c-803c-4ddd-8f50-5001b2daba5a",
+              "name": "Provenance file already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The PGP provenance file (.tgz.prov)",
+                        "type": "text/plain"
+                      },
+                      "key": "prov",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4fcff675-255f-4023-b932-8ca86d248db4",
+      "name": "Charts",
+      "description": {
+        "content": "Chart package download endpoints for retrieving packaged chart archives and provenance files for signature verification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e13e77d-e4d6-4fae-876e-14051a878596",
+          "name": "Helm Download chart package",
+          "request": {
+            "name": "Helm Download chart package",
+            "description": {
+              "content": "Downloads a packaged Helm chart archive (.tgz file) for a specific chart name and version. The archive contains the Chart.yaml, values.yaml, templates, and other chart files. Helm clients use this endpoint after resolving chart references from the index.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charts",
+                "{{chartName}}-{{version}}.tgz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7545a446-56c4-4817-b5c8-14161e1e0062",
+              "name": "Chart package returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ab1a55a-573c-4cfb-9d62-abba364e2c09",
+              "name": "Chart package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bba884ee-acde-485b-9c47-0c3e748676a5",
+          "name": "Helm Download chart provenance file",
+          "request": {
+            "name": "Helm Download chart provenance file",
+            "description": {
+              "content": "Downloads the provenance file for a specific chart version. The provenance file contains a PGP signature used to verify the integrity and origin of the chart package. This endpoint is optional and only available for cryptographically signed charts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charts",
+                "{{chartName}}-{{version}}.tgz.prov"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pgp-signature"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4cce3da-a4bd-4323-97f1-973bed8bdc19",
+              "name": "Provenance file returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz.prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/pgp-signature"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pgp-signature"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0b5d67a-a74d-4915-af2a-c0902c9d29a6",
+              "name": "Provenance file not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz.prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a5d125c0-67e4-4fae-8c30-dba43ce49f54",
+      "name": "Repository",
+      "description": {
+        "content": "Standard Helm chart repository endpoints for index and chart download. These endpoints are required for any Helm-compatible chart repository.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6978605-5d0d-4e02-a342-a8d00082fbd3",
+          "name": "Helm Get repository index",
+          "request": {
+            "name": "Helm Get repository index",
+            "description": {
+              "content": "Retrieves the repository index file which contains metadata about all charts available in the repository. The index.yaml file lists every chart version along with its description, maintainers, download URLs, and content digests. Helm clients use this endpoint to search and resolve chart dependencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "index.yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/x-yaml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbdd898f-d4b7-4ef2-a9e6-b479bef5efb3",
+              "name": "Repository index returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/x-yaml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/x-yaml"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a465348-924b-4dbd-9fe4-dc9eef67ca63",
+              "name": "Repository index not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e72523cf-e461-41f6-90f3-12beb14c9220",
+          "name": "Helm Get repository health",
+          "request": {
+            "name": "Helm Get repository health",
+            "description": {
+              "content": "Returns the health status of the chart repository server. Useful for liveness and readiness probes in Kubernetes deployments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1c6a20b-e4d7-446f-b087-dcc384e4aa3e",
+              "name": "Server is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"healthy\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the chart repository",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "charts.example.com",
+      "key": "repository-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{repository-host}}",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The name of the chart",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "chartName"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The SemVer 2 version of the chart",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "version"
+    }
+  ],
+  "info": {
+    "_postman_id": "11da7716-5623-4994-9f06-4d558034d3dc",
+    "name": "Helm Chart Repository API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Helm Chart Repository API defines the HTTP endpoints used by Helm clients to discover and download charts from a repository server. A chart repository is an HTTP server that houses an index.yaml file listing all available charts and optionally packaged chart archives (.tgz files). ChartMuseum and compatible implementations extend this with a JSON-based management API for listing, uploading, and deleting charts programmatically.\n\nContact Support:\n Name: Helm Project",
+      "type": "text/plain"
+    }
+  }
+}

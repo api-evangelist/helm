@@ -2,8 +2,8 @@
   "repo": "helm",
   "feeds": [
     {
-      "source": "https://helm.sh/blog/atom.xml",
-      "feed_url": "https://helm.sh/blog/atom.xml",
+      "source": "https://helm.sh/blog/index.xml",
+      "feed_url": "https://helm.sh/blog/index.xml",
       "title": "",
       "saved": 0,
       "method": "feed"
@@ -17,5 +17,5 @@
     }
   ],
   "post_count": 24,
-  "fetched": "2026-06-01T23:35:02Z"
+  "fetched": "2026-06-14T20:42:17Z"
 }
