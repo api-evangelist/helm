@@ -191,6 +191,19 @@ apis:
   - type: JSONSchema
     url: json-schema/helm-repository-index-schema.json
 common:
+  - type: IssueTracker
+    url: https://github.com/helm/helm/issues
+  - type: Releases
+    url: https://github.com/helm/helm/releases
+  - type: SecurityPolicy
+    url: https://github.com/helm/helm/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/helm/helm/blob/main/code-of-conduct.md
+  - type: ContributionGuide
+    url: https://github.com/helm/helm/blob/main/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/helm/helm/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/helm-agentic-access.yml
   - type: DomainSecurity
