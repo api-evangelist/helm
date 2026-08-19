@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Helm Chart ChartMuseum Repository API",
+    "version": "v3.17.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repository",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Helm Get repository index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/index.yaml"
+          },
+          "docs": "Retrieves the repository index file which contains metadata about all charts available in the repository. The index.yaml file lists every chart version along with its description, maintainers, download URLs, and content digests. Helm clients use this endpoint to search and resolve chart dependencies."
+        },
+        {
+          "info": {
+            "name": "Helm Get repository health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/health"
+          },
+          "docs": "Returns the health status of the chart repository server. Useful for liveness and readiness probes in Kubernetes deployments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

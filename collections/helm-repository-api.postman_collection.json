@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "2ea3240f-34d4-466d-b4ff-be35718e2f17",
+      "name": "Repository",
+      "description": {
+        "content": "Standard Helm chart repository endpoints for index and chart download. These endpoints are required for any Helm-compatible chart repository.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c5c613f-1c92-4fd9-b5d2-7f7a4cc982e2",
+          "name": "Helm Get repository index",
+          "request": {
+            "name": "Helm Get repository index",
+            "description": {
+              "content": "Retrieves the repository index file which contains metadata about all charts available in the repository. The index.yaml file lists every chart version along with its description, maintainers, download URLs, and content digests. Helm clients use this endpoint to search and resolve chart dependencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "index.yaml"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/x-yaml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce25f53b-c038-4182-821e-205130234abb",
+              "name": "Repository index returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/x-yaml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/x-yaml"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9999600-73cd-41ba-9d43-92a7e39e11e4",
+              "name": "Repository index not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index.yaml"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f96edd4-701e-48d7-8348-a48591e47261",
+          "name": "Helm Get repository health",
+          "request": {
+            "name": "Helm Get repository health",
+            "description": {
+              "content": "Returns the health status of the chart repository server. Useful for liveness and readiness probes in Kubernetes deployments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8964907-fd61-4e7c-9ea7-fc9f5d81e162",
+              "name": "Server is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"healthy\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the chart repository",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "charts.example.com",
+      "key": "repository-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{repository-host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f06e93ac-e4a1-4722-8d85-5afd05e914a0",
+    "name": "Helm Chart ChartMuseum Repository API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Helm Chart Repository API defines the HTTP endpoints used by Helm clients to discover and download charts from a repository server. A chart repository is an HTTP server that houses an index.yaml file listing all available charts and optionally packaged chart archives (.tgz files). ChartMuseum and compatible implementations extend this with a JSON-based management API for listing, uploading, and deleting charts programmatically.\n\nContact Support:\n Name: Helm Project",
+      "type": "text/plain"
+    }
+  }
+}

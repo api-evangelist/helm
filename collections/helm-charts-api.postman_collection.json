@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "458c7fda-4e88-46fd-b68f-0f84b0579499",
+      "name": "Charts",
+      "description": {
+        "content": "Chart package download endpoints for retrieving packaged chart archives and provenance files for signature verification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c6cb079c-3372-4549-a861-94da4528c57c",
+          "name": "Helm Download chart package",
+          "request": {
+            "name": "Helm Download chart package",
+            "description": {
+              "content": "Downloads a packaged Helm chart archive (.tgz file) for a specific chart name and version. The archive contains the Chart.yaml, values.yaml, templates, and other chart files. Helm clients use this endpoint after resolving chart references from the index.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charts",
+                "{{chartName}}-{{version}}.tgz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd9f3516-2b31-41f2-8d18-aa49e7e5b5db",
+              "name": "Chart package returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ab644a7-49cd-40c9-af35-c099c5b99594",
+              "name": "Chart package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe44928c-a40d-493a-b538-06dda690722d",
+          "name": "Helm Download chart provenance file",
+          "request": {
+            "name": "Helm Download chart provenance file",
+            "description": {
+              "content": "Downloads the provenance file for a specific chart version. The provenance file contains a PGP signature used to verify the integrity and origin of the chart package. This endpoint is optional and only available for cryptographically signed charts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "charts",
+                "{{chartName}}-{{version}}.tgz.prov"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The hostname of the chart repository",
+                  "type": "any",
+                  "value": "{{repository-host}}",
+                  "key": "repository-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pgp-signature"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4444c123-106a-416d-a96c-43d04addbb26",
+              "name": "Provenance file returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz.prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/pgp-signature"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pgp-signature"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96e9e835-ad29-40e1-af42-9437cdb38cf8",
+              "name": "Provenance file not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charts",
+                    "{{chartName}}-{{version}}.tgz.prov"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The hostname of the chart repository",
+                      "type": "any",
+                      "value": "{{repository-host}}",
+                      "key": "repository-host"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of the chart repository",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "charts.example.com",
+      "key": "repository-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{repository-host}}",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The name of the chart",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "chartName"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The SemVer 2 version of the chart",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "version"
+    }
+  ],
+  "info": {
+    "_postman_id": "488a638d-e649-433b-9549-64a4f771d9fa",
+    "name": "Helm Chart Repository ChartMuseum Charts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Helm Chart Repository API defines the HTTP endpoints used by Helm clients to discover and download charts from a repository server. A chart repository is an HTTP server that houses an index.yaml file listing all available charts and optionally packaged chart archives (.tgz files). ChartMuseum and compatible implementations extend this with a JSON-based management API for listing, uploading, and deleting charts programmatically.\n\nContact Support:\n Name: Helm Project",
+      "type": "text/plain"
+    }
+  }
+}

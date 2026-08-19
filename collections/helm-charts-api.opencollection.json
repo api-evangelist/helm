@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Helm Chart Repository ChartMuseum Charts API",
+    "version": "v3.17.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Charts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Helm Download chart package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/charts/:chartName-:version.tgz",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Downloads a packaged Helm chart archive (.tgz file) for a specific chart name and version. The archive contains the Chart.yaml, values.yaml, templates, and other chart files. Helm clients use this endpoint after resolving chart references from the index."
+        },
+        {
+          "info": {
+            "name": "Helm Download chart provenance file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{repository-host}/charts/:chartName-:version.tgz.prov",
+            "params": [
+              {
+                "name": "chartName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the chart"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The SemVer 2 version of the chart"
+              }
+            ]
+          },
+          "docs": "Downloads the provenance file for a specific chart version. The provenance file contains a PGP signature used to verify the integrity and origin of the chart package. This endpoint is optional and only available for cryptographically signed charts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
