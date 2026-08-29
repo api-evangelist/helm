@@ -5,6 +5,19 @@ description: >-
   charts. Helm uses a packaging format called charts, which are collections of files that describe a related set of
   Kubernetes resources. A chart repository is an HTTP server that houses an index.yaml file and packaged chart archives.
 url: https://helm.sh
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
