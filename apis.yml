@@ -38,8 +38,8 @@ tags:
   - DevOps
   - Kubernetes
   - Package Manager
-  - Helm
 tags_raw:
+  - Helm
   - Charts
   - Cloud Native
   - Container Orchestration
