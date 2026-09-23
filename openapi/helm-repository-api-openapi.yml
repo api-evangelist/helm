@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Helm Chart ChartMuseum Repository API
+  title: Helm Chart Repository API
   description: The Helm Chart Repository API defines the HTTP endpoints used by Helm clients to discover and download charts from a repository server. A chart repository is an HTTP server that houses an index.yaml file listing all available charts and optionally packaged chart archives (.tgz files). ChartMuseum and compatible implementations extend this with a JSON-based management API for listing, uploading, and deleting charts programmatically.
   version: v3.17.0
   contact:
@@ -60,6 +60,34 @@ paths:
                     example: true
 components:
   schemas:
+    Dependency:
+      type: object
+      description: A chart dependency specifying another chart required by this chart.
+      required:
+      - name
+      - version
+      properties:
+        name:
+          type: string
+          description: The name of the dependency chart.
+        version:
+          type: string
+          description: The SemVer range for the dependency version.
+        repository:
+          type: string
+          format: uri
+          description: The URL of the chart repository where the dependency is hosted.
+        condition:
+          type: string
+          description: A YAML path that resolves to a boolean to enable or disable the dependency.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags used to group dependencies for enable/disable.
+        alias:
+          type: string
+          description: Alias name for the dependency chart.
     Maintainer:
       type: object
       description: Contact information for a chart maintainer.
@@ -77,6 +105,35 @@ components:
           type: string
           format: uri
           description: The maintainer URL.
+    RepositoryIndex:
+      type: object
+      description: The repository index file listing all available charts and their versions. This is the primary discovery mechanism for Helm clients.
+      required:
+      - apiVersion
+      - entries
+      properties:
+        apiVersion:
+          type: string
+          description: The API version of the index file format.
+          example: v1
+        generated:
+          type: string
+          format: date-time
+          description: Timestamp when the index was last generated.
+        entries:
+          type: object
+          description: Map of chart names to their available versions. Each key is a chart name and the value is an array of chart version metadata objects.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ChartVersion'
+        serverInfo:
+          type: object
+          description: Optional server information included by some repository implementations.
+          properties:
+            contextPath:
+              type: string
+              description: Context path for the server.
     ChartVersion:
       type: object
       description: Metadata describing a specific version of a Helm chart as it appears in the repository index.
@@ -170,63 +227,6 @@ components:
           items:
             $ref: '#/components/schemas/Dependency'
           description: List of chart dependencies declared in Chart.yaml.
-    Dependency:
-      type: object
-      description: A chart dependency specifying another chart required by this chart.
-      required:
-      - name
-      - version
-      properties:
-        name:
-          type: string
-          description: The name of the dependency chart.
-        version:
-          type: string
-          description: The SemVer range for the dependency version.
-        repository:
-          type: string
-          format: uri
-          description: The URL of the chart repository where the dependency is hosted.
-        condition:
-          type: string
-          description: A YAML path that resolves to a boolean to enable or disable the dependency.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags used to group dependencies for enable/disable.
-        alias:
-          type: string
-          description: Alias name for the dependency chart.
-    RepositoryIndex:
-      type: object
-      description: The repository index file listing all available charts and their versions. This is the primary discovery mechanism for Helm clients.
-      required:
-      - apiVersion
-      - entries
-      properties:
-        apiVersion:
-          type: string
-          description: The API version of the index file format.
-          example: v1
-        generated:
-          type: string
-          format: date-time
-          description: Timestamp when the index was last generated.
-        entries:
-          type: object
-          description: Map of chart names to their available versions. Each key is a chart name and the value is an array of chart version metadata objects.
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/ChartVersion'
-        serverInfo:
-          type: object
-          description: Optional server information included by some repository implementations.
-          properties:
-            contextPath:
-              type: string
-              description: Context path for the server.
 externalDocs:
   description: Helm Chart Repository Guide
   url: https://helm.sh/docs/topics/chart_repository/
