@@ -65,14 +65,6 @@ paths:
           description: Provenance file not found
 components:
   parameters:
-    Version:
-      name: version
-      in: path
-      required: true
-      description: The SemVer 2 version of the chart
-      schema:
-        type: string
-        example: 1.2.3
     ChartName:
       name: chartName
       in: path
@@ -81,6 +73,14 @@ components:
       schema:
         type: string
         example: nginx
+    Version:
+      name: version
+      in: path
+      required: true
+      description: The SemVer 2 version of the chart
+      schema:
+        type: string
+        example: 1.2.3
 externalDocs:
   description: Helm Chart Repository Guide
   url: https://helm.sh/docs/topics/chart_repository/
