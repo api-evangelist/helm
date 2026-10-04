@@ -60,6 +60,52 @@ paths:
                     example: true
 components:
   schemas:
+    RepositoryIndex:
+      type: object
+      description: The repository index file listing all available charts and their versions. This is the primary discovery mechanism for Helm clients.
+      required:
+      - apiVersion
+      - entries
+      properties:
+        apiVersion:
+          type: string
+          description: The API version of the index file format.
+          example: v1
+        generated:
+          type: string
+          format: date-time
+          description: Timestamp when the index was last generated.
+        entries:
+          type: object
+          description: Map of chart names to their available versions. Each key is a chart name and the value is an array of chart version metadata objects.
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ChartVersion'
+        serverInfo:
+          type: object
+          description: Optional server information included by some repository implementations.
+          properties:
+            contextPath:
+              type: string
+              description: Context path for the server.
+    Maintainer:
+      type: object
+      description: Contact information for a chart maintainer.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The maintainer name.
+        email:
+          type: string
+          format: email
+          description: The maintainer email address.
+        url:
+          type: string
+          format: uri
+          description: The maintainer URL.
     ChartVersion:
       type: object
       description: Metadata describing a specific version of a Helm chart as it appears in the repository index.
@@ -153,52 +199,6 @@ components:
           items:
             $ref: '#/components/schemas/Dependency'
           description: List of chart dependencies declared in Chart.yaml.
-    Maintainer:
-      type: object
-      description: Contact information for a chart maintainer.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The maintainer name.
-        email:
-          type: string
-          format: email
-          description: The maintainer email address.
-        url:
-          type: string
-          format: uri
-          description: The maintainer URL.
-    RepositoryIndex:
-      type: object
-      description: The repository index file listing all available charts and their versions. This is the primary discovery mechanism for Helm clients.
-      required:
-      - apiVersion
-      - entries
-      properties:
-        apiVersion:
-          type: string
-          description: The API version of the index file format.
-          example: v1
-        generated:
-          type: string
-          format: date-time
-          description: Timestamp when the index was last generated.
-        entries:
-          type: object
-          description: Map of chart names to their available versions. Each key is a chart name and the value is an array of chart version metadata objects.
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/ChartVersion'
-        serverInfo:
-          type: object
-          description: Optional server information included by some repository implementations.
-          properties:
-            contextPath:
-              type: string
-              description: Context path for the server.
     Dependency:
       type: object
       description: A chart dependency specifying another chart required by this chart.
