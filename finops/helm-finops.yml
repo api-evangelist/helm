@@ -134,7 +134,6 @@ apis:
 unitEconomics:
   - name: Cost per Helm Release
     metric: cluster_cost / chart_installs
-    target: TBD (depends on chart resource defaults)
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
