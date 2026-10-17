@@ -106,6 +106,34 @@ components:
           type: string
           format: uri
           description: The maintainer URL.
+    Dependency:
+      type: object
+      description: A chart dependency specifying another chart required by this chart.
+      required:
+      - name
+      - version
+      properties:
+        name:
+          type: string
+          description: The name of the dependency chart.
+        version:
+          type: string
+          description: The SemVer range for the dependency version.
+        repository:
+          type: string
+          format: uri
+          description: The URL of the chart repository where the dependency is hosted.
+        condition:
+          type: string
+          description: A YAML path that resolves to a boolean to enable or disable the dependency.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags used to group dependencies for enable/disable.
+        alias:
+          type: string
+          description: Alias name for the dependency chart.
     ChartVersion:
       type: object
       description: Metadata describing a specific version of a Helm chart as it appears in the repository index.
@@ -199,34 +227,6 @@ components:
           items:
             $ref: '#/components/schemas/Dependency'
           description: List of chart dependencies declared in Chart.yaml.
-    Dependency:
-      type: object
-      description: A chart dependency specifying another chart required by this chart.
-      required:
-      - name
-      - version
-      properties:
-        name:
-          type: string
-          description: The name of the dependency chart.
-        version:
-          type: string
-          description: The SemVer range for the dependency version.
-        repository:
-          type: string
-          format: uri
-          description: The URL of the chart repository where the dependency is hosted.
-        condition:
-          type: string
-          description: A YAML path that resolves to a boolean to enable or disable the dependency.
-        tags:
-          type: array
-          items:
-            type: string
-          description: Tags used to group dependencies for enable/disable.
-        alias:
-          type: string
-          description: Alias name for the dependency chart.
 externalDocs:
   description: Helm Chart Repository Guide
   url: https://helm.sh/docs/topics/chart_repository/
